@@ -1,43 +1,63 @@
-# devp2p-network
+# Devp2pNetwork
 
-Monitor and record metrics from the DevP2P network in PostgresDB and visualize the data using the Metabase analytics tool.
+**About:**  
+Monitor and record Ethereum DevP2P peer and network metrics in a database, and visualize them through an analytics dashboard.
 
-<img width="800" alt="devp2p-network-screencap" src="https://user-images.githubusercontent.com/1383412/50279407-6c982e80-03fe-11e9-9156-09a6567dda06.png">
+## Overview
 
-##### Prerequisites:
-- Docker & Docker Compose
-    - [OS X](https://docs.docker.com/docker-for-mac/install/#install-and-run-docker-for-mac)
-    - [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu)
-    - [Windows](https://docs.docker.com/docker-for-windows/install)
-- [NodeJS](https://nodejs.org/en/download)
+Devp2pNetwork is a monitoring tool for the Ethereum DevP2P network. It connects to Ethereum nodes using the DevP2P protocol, gathers peer/network statistics, stores this data in PostgresDB, and visualizes the results via Metabase.
 
-##### Install the node dependencies
-```npm install```
+![devp2p-network-screencap](https://user-images.githubusercontent.com/1383412/50279407-6c982e80-03fe-11e9-9156-09a6567dda06.png)
 
-##### Instantiate the database and dashboard backend services
-```docker-compose up --detach```
+## Features
 
-##### Run the DevP2P monitor
-```npm start```
+- Monitors Ethereum DevP2P network peers and connections.
+- Records peer data and network metrics to a Postgres database.
+- Provides a dashboard for analytics and visualization via Metabase.
+- Docker and Docker Compose support for easy setup.
+- Configurable for different Ethereum networks.
 
-It will take a minute for the client to connect to DevP2P peers. Once it connects to the first peer it will save the node's info to MongoDB and you should be able to see data in your dashboard.
+## Getting Started
 
-##### Browse the dashboard data via Metabase
-```http://localhost:3000```
+1. **Install Node dependencies:**
+   ```bash
+   npm install
+   ```
 
-##### You will need to configure Metabase by creating a user account and adding the Postgres connection info
-```
-First Name: [anything]
-Last Name: [anything]
-Email: [anything]
-...
-```
+2. **Start database and dashboard backend services:**
+   ```bash
+   docker-compose up --detach
+   ```
 
-```
-Database Info:
-Hostname: pg
-Port: 5432
-Username: pguser
-Password: 3th3r3um
-Database Name: devp2p
-```
+3. **Run the DevP2P monitor:**
+   ```bash
+   npm start
+   ```
+
+   It may take a minute for the client to connect to DevP2P peers. Once connected, peer data is saved to MongoDB/Postgres and can be visualized in Metabase.
+
+4. **Access the dashboard:**
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+   You will need to configure Metabase by creating a user account and adding the Postgres connection info.
+
+## Configuration
+
+- Configuration can be set via a config file or command-line arguments.
+- To use a custom network config:
+  ```bash
+  node index.js -c customNetwork.json
+  ```
+- To use a default Ethereum testnet:
+  ```bash
+  node index.js -n goerli
+  ```
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE.md).
+
+---
+
+**Short About Section:**  
+Monitor and record Ethereum DevP2P network peer metrics and visualize them using an analytics dashboard.
